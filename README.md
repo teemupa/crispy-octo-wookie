@@ -1,2 +1,2 @@
-RTDSD2015\n
+RTDSD2015
 Temperature and humidity sensing system
