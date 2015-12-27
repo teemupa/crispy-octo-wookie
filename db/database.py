@@ -22,19 +22,19 @@ class SensorDatabase(object):
             cur.executescript(sql)
 
 
-    def add_values(self, temp_in, temp_out, hum):
+    def add_values(self, temp_in, hum):
         '''
         Insert sensor data values in to the
         '''
-        if type(temp_in) is not float or type(temp_out) is not float or type(hum) is not float:
+        if type(temp_in) is not float  or type(hum) is not float:
             #print("Error: Value not type of float.")
             return False
-        stmnt = 'INSERT INTO SENSOR_DATA (temp_in, temp_out, hum) VALUES(?,?,?)'
+        stmnt = 'INSERT INTO SENSOR_DATA (temp_in, hum) VALUES(?,?)'
         con = sqlite3.connect(DB_PATH)
         with con:
             cur = con.cursor()
             cur.execute(KEYS_ON)
-            pvalue = (temp_in, temp_out, hum)
+            pvalue = (temp_in, hum)
             try:
                 cur.execute(stmnt, pvalue)
             except sqlite3.OperationalError:
@@ -47,7 +47,7 @@ class SensorDatabase(object):
 
     def get_values(self, limit):
         '''Get values from database'''
-        stmnt = 'SELECT timestamp, temp_in, temp_out, hum FROM SENSOR_DATA ORDER BY ID DESC LIMIT ?'
+        stmnt = 'SELECT timestamp, temp_in, hum FROM SENSOR_DATA ORDER BY ID DESC LIMIT ?'
         con = sqlite3.connect(DB_PATH)
         with con:
             cur = con.cursor()
@@ -61,6 +61,6 @@ class SensorDatabase(object):
                 return False
             values = []
             for row in rows:
-                value_row = dict(timestamp=row[0], temp_in=row[1], temp_out=row[2], hum=row[3])
+                value_row = dict(timestamp=row[0], temp_in=row[1], hum=row[2])
                 values.append(value_row)
             return values
