@@ -1,8 +1,8 @@
 import sqlite3
 
 
-DB_PATH     = 'sensor_data.db'
-DB_SCHEMA   = 'schema.sql'
+DB_PATH     = '/home/pi/projects/rtdsd15/db/sensor_data.db'
+DB_SCHEMA   = 'db/schema.sql'
 KEYS_ON     = 'PRAGMA foreign_keys = ON'
 
 class SensorDatabase(object):
