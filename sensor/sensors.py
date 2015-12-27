@@ -3,11 +3,6 @@ import Adafruit_DHT
 DHT_TYPE    = Adafruit_DHT.AM2302
 AM2302_PIN  = 4
 
-class Sensors(object):
-    '''API to access connected sensors'''
-    def __init__(self):
-        super(Sensors, self).__init__()
-
 def get_temp_and_hum():
     '''
     Read temperature and humidity values from the AM2302 sensor
