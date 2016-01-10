@@ -2,7 +2,7 @@ import json
 
 from flask import Flask, request, Response, g, jsonify
 from flask.ext.restful import Resource, Api, abort
-from flask.ext.cors IMPORT CORS
+from flask.ext.cors import CORS
 from werkzeug.exceptions import NotFound, UnsupportedMediaType
 
 from utils import RegexConverter
