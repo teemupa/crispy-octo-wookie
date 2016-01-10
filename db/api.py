@@ -119,9 +119,9 @@ class history_data(Resource):
             value0 = {'name':'timestamp', 'value':_timestamp}
             value1 = {'name':'temperature', 'value':_temperature}
             value2 = {'name':'humidity', 'value':_humidity}
-            task['data'].append(value0)
-            task['data'].append(value1)
-            task['data'].append(value2)
+            history_data['data'].append(value0)
+            history_data['data'].append(value1)
+            history_data['data'].append(value2)
             #task['links'] = [{"href" : api.url_for(Comments, taskid=_task), "rel" : "Comments", "prompt" : "Comments for this task"},
             #                 {"href" : api.url_for(Assignees, taskid=_task), "rel" : "Assignees", "prompt" : "Assignees for this task"}]
             items.append(data)
