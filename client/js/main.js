@@ -4,26 +4,20 @@ $(function(){
         navMain.collapse('hide');
     });
 
+    var api = "http://teemupa.dy.fi:5000/api/";
 
-    (function worker() {
-        $.get('ajax/test.html', function(data) {
-            // Now that we've completed the request schedule the next one.
-            $('.result').html(data);
-            setTimeout(worker, 5000);
-        });
-    })();
 
-    (function worker() {
-        $.ajax({
-            url: 'ajax/test.html',
-            success: function(data) {
-                $('.result').html(data);
-            },
-            complete: function() {
-                // Schedule the next request when the current one's complete
-                setTimeout(worker, 5000);
-            }
+    $.getJSON( api, function() {
+        console.log( "success" );
+    })
+        .done(function() {
+            console.log( "second success" );
+        })
+        .fail(function() {
+            console.log( "error" );
+        })
+        .always(function() {
+            console.log( "complete" );
         });
-    })();
 
 });
