@@ -135,11 +135,9 @@ app.url_map.converters['regex'] = RegexConverter
 #Define the routes
 api.add_resource(Temperature_And_Humidity, '/api/',
                  endpoint='values')
-'''
-@cross_origin(origin='*',headers=['Content- Type','Authorization'])
-def foo():
-    return request.json['inputVar']
-'''
+api.add_resource(history_data, '/api/history/', endpoint ='history')
+
+
 
 @app.after_request
 def add_header(response):
