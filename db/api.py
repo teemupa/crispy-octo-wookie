@@ -111,7 +111,7 @@ class history_data(Resource):
         for data in values_db:
             _timestamp = data['timestamp']
             _temperature = data['temp_in']
-            _humidity = task['hum']
+            _humidity = data['hum']
             #_url = api.url_for(History, timestamp=_timestamp)
             history_data = {}
             #task['href'] = _url
