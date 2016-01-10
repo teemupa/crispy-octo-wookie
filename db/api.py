@@ -86,6 +86,48 @@ class Temperature_And_Humidity(Resource):
         collection['items'] = items
         return envelope
 
+class history_data(Resource):
+    '''
+    Historical data for graph etc...
+    '''
+
+    def get(self):
+        #Extract history data from database
+        values_db = g.db.get_history_values()
+
+        #Create the envelope
+        envelope = {}
+        collection = {}
+        envelope["collection"] = collection
+        collection['version'] = "1.0"
+        collection['template'] = {
+          "data" : [
+                {"prompt" : "timestamp", "name" : "timestamp", "value" : "", "required":True},
+                {"prompt" : "temperature", "name" : "temperature", "value" : "", "required":True},
+                {"prompt" : "humidity", "name" : "humidity", "value" : "", "required":True}
+        }
+        #Create the items
+        items = []
+        for data in values_db:
+            _timestamp = data['timestamp']
+            _temperature = data['temp_in']
+            _humidity = task['hum']
+            #_url = api.url_for(History, timestamp=_timestamp)
+            history_data = {}
+            #task['href'] = _url
+            history_data['data'] = []
+            value0 = {'name':'timestamp', 'value':_timestamp}
+            value1 = {'name':'temperature', 'value':_temperature}
+            value2 = {'name':'humidity', 'value':_humidity}
+            task['data'].append(value0)
+            task['data'].append(value1)
+            task['data'].append(value2)
+            #task['links'] = [{"href" : api.url_for(Comments, taskid=_task), "rel" : "Comments", "prompt" : "Comments for this task"},
+            #                 {"href" : api.url_for(Assignees, taskid=_task), "rel" : "Assignees", "prompt" : "Assignees for this task"}]
+            items.append(data)
+        collection['items'] = items
+
+        return envelope
 
 
 app.url_map.converters['regex'] = RegexConverter

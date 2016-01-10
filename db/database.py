@@ -64,3 +64,22 @@ class SensorDatabase(object):
                 value_row = dict(timestamp=row[0], temp_in=row[1], hum=row[2])
                 values.append(value_row)
             return values
+
+    def get_history_values(self):
+        '''Get all history values'''
+        keys_on = 'PRAGMA foreign_keys = ON'
+        stmnt = 'SELECT TOP 24 timestamp, temp_in, hum FROM SENSOR_DATA'
+        con = sqlite3.connect(DB_PATH)
+        con.text_factory = str #To avoid UTF-8 encoding problem
+        with con:
+            cur = con.cursor()
+            cur.execute(KEYS_ON)
+            cur.execute(stmnt)
+            rows = cur.fetchall()
+            if rows is None:
+                return False
+            history_data = []
+            for row in rows:
+                data = dict(timestamp=row[0], temp_in=row[1], hum=row[2])
+                history_data.append(task)
+            return history_data
