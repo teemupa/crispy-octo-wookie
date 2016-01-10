@@ -15,6 +15,10 @@ COLLECTIONJSNO = "application/vnd.collection+json"
 app = Flask(__name__)
 app.debug = True
 app.config.update({'DATABASE':database.ProjectDatabase(DEFAULT_DB_PATH)})
+app.config['CORS_HEADERS'] = 'Content-Type'
+
+cors = CORS(app, resources={r"/foo": {"origins": "*"}})
+
 
 #Start the RESTful Api
 api = Api(app)
@@ -90,6 +94,9 @@ app.url_map.converters['regex'] = RegexConverter
 #Define the routes
 api.add_resource(Temperature&Humidity, '/project/api/tasks/',
                  endpoint='values')
+@cross_origin(origin='*',headers=['Content- Type','Authorization'])
+def foo():
+    return request.json['inputVar']
 
 
 #Start the application
