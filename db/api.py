@@ -105,7 +105,7 @@ class history_data(Resource):
                 {"prompt" : "timestamp", "name" : "timestamp", "value" : "", "required":True},
                 {"prompt" : "temperature", "name" : "temperature", "value" : "", "required":True},
                 {"prompt" : "humidity", "name" : "humidity", "value" : "", "required":True}
-        }
+        ]}
         #Create the items
         items = []
         for data in values_db:
