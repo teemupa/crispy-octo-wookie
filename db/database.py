@@ -68,7 +68,7 @@ class SensorDatabase(object):
     def get_history_values(self):
         '''Get all history values'''
         keys_on = 'PRAGMA foreign_keys = ON'
-        stmnt = 'SELECT TOP 24 timestamp, temp_in, hum FROM SENSOR_DATA'
+        stmnt = 'SELECT TOP 10 timestamp, temp_in, hum FROM SENSOR_DATA'
         con = sqlite3.connect(DB_PATH)
         con.text_factory = str #To avoid UTF-8 encoding problem
         with con:
