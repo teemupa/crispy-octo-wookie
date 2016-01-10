@@ -1,0 +1,60 @@
+body {
+    font-family: Calibri, Candara, Segoe, 'Segoe UI', Optima, Arial, sans-serif;
+    color: #fff;
+    background-image: url("../img/tile.png");
+    background-repeat: repeat;
+    padding-top: 120px;
+}
+
+.navbar-brand {
+    text-shadow: black 0.1em 0.4em 0.4em !important;
+}
+
+.container {
+    text-align: center;
+}
+
+.container h1 {
+    margin: 0;
+    letter-spacing: 5px;
+    font-size: 40px;
+    text-transform: uppercase;
+}
+
+.container .sensor-value span {
+    font-size: 40px;
+    text-transform: uppercase;
+}
+
+[class*="col-"]{
+    padding: 25px 0;
+    background: rgba(0, 0, 0, 0.40);
+    margin-bottom: 35px;
+}
+
+
+
+/* Small devices (tablets, 768px and up) */
+@media (max-width: 768px) {
+
+    .container h1 {
+        font-size: 30px;
+        text-transform: uppercase;
+    }
+
+    .container .sensor-value span {
+        font-size: 30px;
+        text-transform: uppercase;
+    }
+
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (max-width: 992px) {
+
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media (max-width: 1200px) {
+
+}
