@@ -2,6 +2,7 @@ import json
 
 from flask import Flask, request, Response, g, jsonify
 from flask.ext.restful import Resource, Api, abort
+from flask.ext.cors IMPORT CORS
 from werkzeug.exceptions import NotFound, UnsupportedMediaType
 
 from utils import RegexConverter
@@ -15,6 +16,8 @@ COLLECTIONJSNO = "application/vnd.collection+json"
 app = Flask(__name__)
 app.debug = True
 app.config.update({'DATABASE':database.SensorDatabase()})
+
+cors = CORS(app, resources={r"/foo": {"origins": "*"}})
 
 #Start the RESTful Api
 api = Api(app)
@@ -90,9 +93,11 @@ app.url_map.converters['regex'] = RegexConverter
 #Define the routes
 api.add_resource(Temperature_And_Humidity, '/api/',
                  endpoint='values')
+@cross_origin(origin='*',headers=['Content- Type','Authorization'])
+def foo():
+    return request.json['inputVar']
 
 
 #Start the application
 if __name__ == '__main__':
     app.run(host='0.0.0.0', debug=True)
-
