@@ -48,6 +48,7 @@ class Temperature_And_Humidity(Resource):
     Resource Messages implementation
     '''
     #get the values from the database
+
     def get(self):
         values_db = g.db.get_values(1)
 
@@ -98,6 +99,11 @@ api.add_resource(Temperature_And_Humidity, '/api/',
 def foo():
     return request.json['inputVar']
 '''
+
+@app.after_request
+def add_header(response):
+    response.headers['Access-Control-Allow-Origin'] = '*'
+    return response
 
 #Start the application
 if __name__ == '__main__':
