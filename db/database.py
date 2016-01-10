@@ -81,5 +81,5 @@ class SensorDatabase(object):
             history_data = []
             for row in rows:
                 data = dict(timestamp=row[0], temp_in=row[1], hum=row[2])
-                history_data.append(task)
+                history_data.append(data)
             return history_data
