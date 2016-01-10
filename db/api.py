@@ -84,7 +84,6 @@ class Temperature_And_Humidity(Resource):
 
 
         collection['items'] = items
-        envelope.headers.add('Access-Control-Allow-Origins', '*')
         return envelope
 
 
