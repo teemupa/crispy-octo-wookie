@@ -29,7 +29,7 @@
                 <span class="icon-bar"></span>
             </button>
 
-            <a class="navbar-brand" href="#"><span class="glyphicon glyphicon-home"></span></a>
+            <a class="navbar-brand" href=""><span class="glyphicon glyphicon-home"></span></a>
         </div>
         <div class="collapse navbar-collapse" id="navbar">
             <ul class="nav navbar-nav">
@@ -62,7 +62,7 @@
 
             <div class="row">
                 <div class="col-md-12">
-                    <span>Last updated: </span><span id="timestamp">1/10/2016 12:28</span>
+                    <span>Last updated: </span><span id="timestamp">-</span>
                 </div>
 
             </div>
@@ -75,91 +75,66 @@
             <div class="row">
 
                 <div class="col-md-12 sensor-value">
-                    <h1>History</h1>
+                    <h1>History<br><small>Last 24 hours</small></h1>
                 </div>
 
 
                 <div class="col-md-6 sensor-value">
+                    <h2><span class="glyphicon glyphicon-dashboard"></span> Temperature</h2>
                     <div style="width: 90%; margin: 0 auto;">
+                        <div class="loader">
+                            Loading graph..<br/>
+                            <img src="img/ajax-loader.gif" />
+                        </div>
+
                         <canvas id="temperature-canvas"></canvas>
                     </div>
                 </div>
 
                 <div class="col-md-6 sensor-value">
+                    <h2><span class="glyphicon glyphicon-tint"></span> Humidity</h2>
                     <div style="width: 90%; margin: 0 auto;">
+                        <div class="loader">
+                            Loading graph..<br/>
+                            <img src="img/ajax-loader.gif" />
+                        </div>
                         <canvas id="humidity-canvas"></canvas>
                     </div>
                 </div>
 
             </div>
         </div>
+    </div>
 
 
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
 
-
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h3 style="color:red;"><span class="glyphicon glyphicon-alert"></span> ALERT - TOO COLD!</h3>
+                    <h4 style="color: red;">Please, do something.</h4>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-default btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Close</button>
+                </div>
+            </div>
+        </div>
     </div>
 
 </div>
+
+
+
+
 
 <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.3.min.js"></script>
 <script src="js/Chart.min.js" charset="utf-8"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/main.js"></script>
-
-
-<script>
-    var randomScalingFactor = function(){ return Math.round(Math.random()*100)};
-
-    var barChartData = {
-        labels : ["Tammikuu","Helmikuu","Maaliskuu","Huhtikuu","Toukokuu","Kesäkuu","Heinäkuu"],
-        datasets : [
-            {
-                fillColor : "rgba(151,187,205,0.5)",
-                strokeColor : "rgba(151,187,205,0.8)",
-                highlightFill : "rgba(151,187,205,0.75)",
-                highlightStroke : "rgba(151,187,205,1)",
-                data : [randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor()]
-            }
-        ]
-
-    }
-
-
-    randomScalingFactor = function(){ return Math.round(Math.random()*100)};
-    var lineChartData = {
-        labels : ["January","February","March","April","May","June","July"],
-        datasets : [
-            {
-                label: "My First dataset",
-                fillColor : "rgba(220,220,220,0.2)",
-                strokeColor : "rgba(220,220,220,1)",
-                pointColor : "rgba(220,220,220,1)",
-                pointStrokeColor : "#fff",
-                pointHighlightFill : "#fff",
-                pointHighlightStroke : "rgba(220,220,220,1)",
-                data : [randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor()]
-            }
-        ]
-
-    }
-
-    window.onload = function(){
-        var ctx1 = document.getElementById("humidity-canvas").getContext("2d");
-        window.myBar = new Chart(ctx1).Bar(barChartData, {
-            responsive : true
-        });
-        var ctx2 = document.getElementById("temperature-canvas").getContext("2d");
-        window.myLine = new Chart(ctx2).Line(lineChartData, {
-            responsive: true
-        });
-    }
-
-</script>
-
-
-
-
-
 
 </body>
 </html>
